@@ -32,9 +32,20 @@ h1 {
 .btn {
     position: relative;
     top: 20px;
-    left: 30px;
+    right: 5px;
     color: black;
+    background: #C3B299;
     border: black;
     border-style: solid;
     border-width: 1px;
+}
+
+.userButtons button:hover {
+    background: #111D13;
+}
+#signupModal button:hover {
+    background: #111D13;
+}
+#loginModal button:hover {
+    background: #111D13;
 }
