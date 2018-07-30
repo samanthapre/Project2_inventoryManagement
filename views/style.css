@@ -1,0 +1,40 @@
+body {
+    background: #CBD4C2;
+}
+
+hr {
+    position: relative;
+    bottom: 15px;
+}
+
+h1 {
+    color: #111D13;
+}
+
+.appIcon {
+    position: relative;
+    left: 40%;
+    top: 100px;;
+}
+
+#logoNav {
+    font-size: 30px;
+    color: #111D13;
+}
+
+#logo {
+    position: relative;
+    left: 50px;
+    font-size: 100px;
+    color: #111D13;
+}
+
+.btn {
+    position: relative;
+    top: 20px;
+    left: 30px;
+    color: black;
+    border: black;
+    border-style: solid;
+    border-width: 1px;
+}
