@@ -29,23 +29,28 @@
                 <div>User Password (not stored):
                     <span id="userpass"></span>
                 </div>
-                <div>Encrypted password (store this!):
+                <div>Hash (store this!):
                     <span id="encryptpass"></span>
                 </div>
             </div>
             <div class="col-sm">
                 <br>
                 <label for="confirmPass">Enter Current Password:</label>
-                <input id="confirmPass" type="text"></input>
+                <input id="confirmPass" type="password"></input>
                 <button id="confirm">Confirm Password!</button>
                 <br>
                 <hr>
+                <div>Same password? (compares hash):
+                        <span id="passCheckStatus"></span>
+                    </div>
             </div>
         </div>
     </div>
 
 
-
+    <!-- Sha256 - Encryption  -->   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.js"></script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -55,34 +60,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
         crossorigin="anonymous"></script>
 
-
-
-    <script>
-
-        // on page load...
-        $(document).ready(() => {
-
-
-            //var bcrypt = require('bcryptjs');
-
-            $("#encrypt").on("click", function () {
-
-                // get the current password
-                var curPass = $("#enterpass").val();
-
-                console.log("Current Password: ", curPass);
-
-                $("#userpass").text(curPass);
-            });
-        });
-
-
-
-
-
-
-
-    </script>
+<script src="../public/assets/js/encryptTest.js"></script>
 </body>
 
 </html>
