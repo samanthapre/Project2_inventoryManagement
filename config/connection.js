@@ -1,5 +1,7 @@
 // Set up MySQL connection.
 var mysql = require("mysql");
+var dotenv = require('dotenv').config();
+
 var connection;
 
 if(process.env.JAWSDB_URL){
@@ -8,11 +10,11 @@ if(process.env.JAWSDB_URL){
 else{
 // create a local mysql connection definition for the burgertime_db database
 var connection = mysql.createConnection({
-  host: "localhost",
-  port: 3307,
-  user: "root",
-  password: "root",
-  database: ""
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DBNAME
 });
 }
 
