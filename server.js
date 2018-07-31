@@ -2,11 +2,12 @@ var express = require("express");
 var bodyParser = require("body-parser");
 path = require("path");
 
-
 // create our port (two definitions depending on site being local or hosted)
 var PORT = process.env.PORT || 8080;
 var app = express();
 
+// Requiring our models for syncing
+var db = require("./models");
 
 // Serve content at routes from '/static'  for the app from the "public" directory in the application directory.
 app.use('/static', express.static('public'));
@@ -16,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // parse application/json
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '/views/public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Set Handlebars.
 var exphbs = require("express-handlebars");
