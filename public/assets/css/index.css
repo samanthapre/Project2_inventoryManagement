@@ -1,0 +1,53 @@
+body {
+    background: #5F7367;
+    width: 100%;
+}
+
+hr {
+    position: relative;
+    bottom: 15px;
+}
+
+h1 {
+    color: #D9D7DD;
+}
+
+.appIcon {
+    position: relative;
+    top: 100px;
+    width: 200px;
+    left: 42%;
+}
+
+#logoNav {
+    font-size: 30px;
+    color: #5F7367;
+}
+
+#logo {
+    position: relative;
+    left: 50px;
+    font-size: 100px;
+    color: #D9D7DD;
+}
+
+.btn {
+    position: relative;
+    top: 20px;
+    right: 5px;
+    color: black;
+    background: #C3B299;
+    border: black;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.userButtons button:hover {
+    background: #B07BAC;
+}
+#signupModal button:hover {
+    background: #111D13;
+}
+#loginModal button:hover {
+    background: #111D13;
+}
