@@ -45,9 +45,6 @@ h1 {
 .userButtons button:hover {
     background: #B07BAC;
 }
-.userButtons button:onClick {
-
-}
 #signupModal button:hover {
     background: #111D13;
 }
