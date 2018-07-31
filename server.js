@@ -30,15 +30,11 @@ app.set("view engine", "handlebars");
 require("./controllers/html-routes")(app);
 
 
-// TODO: CREATE CONTROLLERS AND IMPORT THEM HERE
-//var routes = require("");
-//app.use(routes);
-
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
 db.sequelize.sync({ force: true }).then(function() {
   app.listen(PORT, function() {
     // After sequelize sync completes, start to listen
-    console.log("App listening on PORT " + PORT);
+    console.log("App listening on http://localhost:" + PORT);
   });
 });
