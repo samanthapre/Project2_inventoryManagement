@@ -2,6 +2,7 @@
   $(document).ready(() => {
     var curPass ="";
     var curHash = "";
+    var curSalt ="";
 
     $("#encrypt").on("click", function () {
 
@@ -12,11 +13,9 @@
 
         $("#userpass").text(curPass);
 
-        // encrypt ou   
-        // var shaObj = new jsSHA("SHA-512", "TEXT");
-        // shaObj.update(curPass);
-        // var encryptedPassword = shaObj.getHash("TEXT");
+        // TODO: GERNERATE SALT
 
+        // encrypt our password 
          curHash = sha256(curPass);
 
         console.log("Hash: ",curHash);
