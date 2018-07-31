@@ -26,7 +26,7 @@ app.set("view engine", "handlebars");
 
 // Import routes and give the server access to them.
 // the Controllers will handle the requests sent from the view
-require("./routes/html-routes")(app);
+require("./controllers/html-routes")(app);
 
 
 // TODO: CREATE CONTROLLERS AND IMPORT THEM HERE
