@@ -1,5 +1,6 @@
 body {
-    background: #CBD4C2;
+    background: #5F7367;
+    width: 100%;
 }
 
 hr {
@@ -8,25 +9,26 @@ hr {
 }
 
 h1 {
-    color: #111D13;
+    color: #D9D7DD;
 }
 
 .appIcon {
     position: relative;
-    left: 40%;
-    top: 100px;;
+    top: 100px;
+    width: 200px;
+    left: 42%;
 }
 
 #logoNav {
     font-size: 30px;
-    color: #111D13;
+    color: #5F7367;
 }
 
 #logo {
     position: relative;
     left: 50px;
     font-size: 100px;
-    color: #111D13;
+    color: #D9D7DD;
 }
 
 .btn {
@@ -41,11 +43,24 @@ h1 {
 }
 
 .userButtons button:hover {
-    background: #111D13;
+    background: #B07BAC;
+}
+.userButtons button:onClick {
+
 }
 #signupModal button:hover {
     background: #111D13;
 }
 #loginModal button:hover {
     background: #111D13;
+}
+.modal-content {
+    padding: 10px;
+}
+a {
+    color: #5F7367;
+}
+
+a:hover {
+    color: #111D13;
 }

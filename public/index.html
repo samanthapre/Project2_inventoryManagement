@@ -17,7 +17,7 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
-    <script src="./assets/javascript/main.js"></script>
+    <script src="./assets/js/index.js"></script>
 </head>
 
 <body>
@@ -50,14 +50,22 @@
             <div class="modal-content">
                 <form>
                     <div class="form-group">
-                        <label for="usernameSignup">Username</label>
+                        <label for="usernameSignup">Username:</label>
                         <input type="text" class="form-control" id="usernameSignup" placeholder="Enter username">
                     </div>
                     <div class="form-group">
-                        <label for="userPassSignup">Password</label>
+                        <label for="userPassSignup">Password:</label>
                         <input type="password" class="form-control" id="userPassSignup" placeholder="Password">
                     </div>
-                    <button type="submit" class="btn btn-primary">Signup</button>
+                    <div class="form-group">
+                        <label>Confirm Password:</label>
+                            <br>
+                            <input type="password" name="confirm_password" id="userPassConfirm"  onkeyup='check();' /> 
+                            <span id='message'></span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="signupSubmit" class="btn btn-primary">Signup</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -67,14 +75,16 @@
             <div class="modal-content">
                 <form>
                     <div class="form-group">
-                        <label for="usernameSignup">Username</label>
+                        <label for="usernameSignup">Username:</label>
                         <input type="text" class="form-control" id="usernameSignup" placeholder="Enter username">
                     </div>
                     <div class="form-group">
-                        <label for="userPassSignup">Password</label>
+                        <label for="userPassSignup">Password:</label>
                         <input type="password" class="form-control" id="userPassSignup" placeholder="Password">
                     </div>
-                    <button type="submit" class="btn btn-primary">Log In</button>
+                    <div class="modal-footer">
+                        <button type="submit" id="signupSubmit" class="btn btn-primary">Signup</button>
+                    </div>
                 </form>
             </div>
         </div>
