@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // parse application/json
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '/views/public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Set Handlebars.
 var exphbs = require("express-handlebars");
