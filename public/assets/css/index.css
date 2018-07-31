@@ -51,13 +51,3 @@ h1 {
 #loginModal button:hover {
     background: #111D13;
 }
-.modal-content {
-    padding: 10px;
-}
-a {
-    color: #5F7367;
-}
-
-a:hover {
-    color: #111D13;
-}
