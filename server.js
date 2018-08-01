@@ -28,6 +28,7 @@ app.set("view engine", "handlebars");
 // Import routes and give the server access to them.
 // the Controllers will handle the requests sent from the view
 require("./controllers/html-routes")(app);
+require("./controllers/api-routes")(app);
 
 
 // Syncing our sequelize models and then starting our Express app
