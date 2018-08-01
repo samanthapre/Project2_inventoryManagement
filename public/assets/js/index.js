@@ -13,21 +13,27 @@ var check = function() {
 $(document).ready(function() {
   $(`#signupSubmit`).on("click", function(event) {
     event.preventDefault();
+    console.log("signupSubmit pressed");
 
-    console.log("Submit User");
     // GET an array of all users
     $.get("/api/users", function(res){
       console.log(res);
+
+      var nameTaken = false;
+
       //loop through the users array
       for (var i in res) {
         // check if username being entered
         if (res.login == $(`#usernameSignup`).value) {
+          nameTaken = true;
           $(`#usernameMessage`).html("Username already taken!");
         }
-        else {
-          console.log("User created!")
-        }
+        
       }
+
+      if(!nameTaken){ $(`#usernameMessage`).html("Username available!");  }
+
+
     })
   }); 
 })
