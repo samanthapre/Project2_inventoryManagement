@@ -12,6 +12,14 @@ h1 {
     color: #D9D7DD;
 }
 
+a {
+    color: #111D13
+}
+
+a:hover {
+    color: #5F7367;
+}
+
 .appIcon {
     position: relative;
     top: 100px;
