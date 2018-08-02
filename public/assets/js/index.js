@@ -10,9 +10,13 @@ var check = function () {
   }
 }
 
-var storeUser = function() {
-  let sessionUser = sessionStorage.setItem("Name", $(`#usernamelogin`).val());
-  let userAuth = sessionStorage.setItem("auth", "true");
+var storeUserLogin = function() {
+  let sessionUserLogin  = sessionStorage.setItem("Name", $(`#usernamelogin`).val());
+  let userAuthLogin = sessionStorage.setItem("auth", "true");
+}
+var storeUserSignup = function() {
+  let sessionUserSignup = sessionStorage.setItem("Name", $(`#usernameSignup`).val());
+  let userAuthSignup = sessionStorage.setItem("auth", "true");
 }
 
 $(document).ready(function () {
@@ -68,7 +72,7 @@ $(document).ready(function () {
 
           if (res == "true") {
             alert("User created!");
-            storeUser();
+            storeUserSignup();
             window.location.replace("/products");
           }
           else {
@@ -126,7 +130,7 @@ $(document).ready(function () {
               $(`#loginMessage`).html("You are logged in!");
               $(`#loginMessage`).css("color", "green");
               window.location.replace("/products");
-              storeUser();
+              storeUserLogin();
             }
           }) // end of then
         }; // end of else
