@@ -103,8 +103,9 @@ module.exports = function (app) {
     // GET /api/products  - Returns list of all Products
     app.get("/api/products", function (req, res) {
         console.log("GET /api/products");
-        db.Product.findAll()
-            .then(function (dbProduct) {
+        db.Product.findAll({
+            include: [db.Location]
+        }).then(function (dbProduct) {
                 res.json(dbProduct);
             });
     });
