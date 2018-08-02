@@ -117,7 +117,9 @@ module.exports = function (app) {
             .then(function (dbProduct) {
                 // Now add the Product's key as a FK in Location
                 db.Location.update(
-                    { ProductId: dbProduct.id },
+                    { ProductId: dbProduct.id,
+                      count    : req.body.location.count
+                    },
                     {
                         where: {
                             aisle: req.body.location.aisle,
