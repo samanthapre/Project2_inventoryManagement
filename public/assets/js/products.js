@@ -73,7 +73,20 @@ $(document).ready(function() {
   console.log("doc ready")
     // productsContainer holds all of our products
     var productsTable = $("#productTable");
-    
+    $(document).on("click",".delete-button", function(){
+      console.log($(this))
+      $.ajax({
+        url: '/api/product/'+$(this).data("id"),
+        type: 'DELETE',
+        success: function(result) {
+          window.location.href="/products";
+        }
+      });
+    });
+    //   $.delete("/api/product/"+$(this).data("id"),function(){
+    //     window.location.href="/products";
+    //   })
+    // }))
     
     
   
@@ -110,7 +123,8 @@ $(document).ready(function() {
     
     var tr = $("<tr scope='row'>");
     var tdtype = $("<td class='type'>")
-    
+    var tdbutton = $("<td>")
+    var button = $("<button class='btn btn-sm myButton delete-button'>")
     var tdmodel = $("<td class='model'>")
     var tdsize = $("<td class='size'>")
     var tdwidth = $("<td class='width'>")
@@ -118,10 +132,14 @@ $(document).ready(function() {
     tdmodel.text(products.model);
     tdsize.text(products.size);
     tdwidth.text(products.width);
+    button.text("Delete");
+    button.data("id",products.id);
+    tdbutton.append(button)
     tr.append(tdtype);
     tr.append(tdmodel);
     tr.append(tdsize);
     tr.append(tdwidth);
+    tr.append(tdbutton);
     return tr;
 
   }
