@@ -71,6 +71,10 @@ function addLocationSelections() {
 // DOCUMENT READY
 $(document).ready(function() {
   console.log("doc ready")
+  if (sessionStorage.getItem("Name") === null) {
+    window.location.replace("/");
+    console.log("checked")
+    }
     // productsContainer holds all of our products
     var productsTable = $("#productTable");
     

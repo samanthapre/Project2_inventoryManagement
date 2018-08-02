@@ -68,6 +68,7 @@ $(document).ready(function () {
 
           if (res == "true") {
             alert("User created!");
+            storeUser();
             window.location.replace("/products");
           }
           else {
