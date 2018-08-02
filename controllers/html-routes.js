@@ -9,7 +9,7 @@ module.exports = function(app) {
     // GET /  Returns Landing page
     app.get("/products", function(req, res) {
         console.log("Getting products");
-        res.sendFile(path.join(__dirname, "../views/product.html"));
+        res.sendFile(path.join(__dirname, "../views/products.html"));
     });
 
     // FIXME -- TESTING
