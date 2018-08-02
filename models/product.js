@@ -7,7 +7,8 @@ module.exports = function(sequelize, DataTypes) {
     });
   
     Product.associate = function(models) {
-        // Add relationships here
+        // A product can be stored in multiple locations
+        Product.hasMany(models.Location, {onDelete: "SET NULL"} );
     };
   
     return Product;

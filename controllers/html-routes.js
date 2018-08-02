@@ -12,4 +12,10 @@ module.exports = function(app) {
         res.sendFile(path.join(__dirname, "../views/product.html"));
     });
 
+    // FIXME -- TESTING
+    app.get("/add-product", function(req, res) {
+        console.log("FIXME - TESTING - Displaying add-product page");
+        res.sendFile(path.join(__dirname, "../public/add-product.html"));
+    });
+
 };

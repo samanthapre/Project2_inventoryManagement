@@ -22,7 +22,7 @@ module.exports = function(app) {
 
     // POST /api/user  - Adds a new User
     app.post("/api/user", function(req, res) {
-        console.log("user created");
+        console.log("Creating User");
         console.log(req.body);
         db.User.create(req.body)
             .then(function(dbUser) {
@@ -41,10 +41,22 @@ module.exports = function(app) {
 
     // POST /api/product  - Adds a new Product
     app.post("/api/product", function(req, res) {
+        // Create the new Product row
         db.Product.create(req.body)
-            .then(function(dbProduct) {
+        .then(function(dbProduct) {
+            // Now add the Product's key as a FK in Location
+            db.Location.update(
+                { ProductId: dbProduct.id},
+                { where: { 
+                    aisle   : req.body.location.aisle,
+                    section : req.body.location.section,
+                    shelf   : req.body.location.shelf,
+                    position: req.body.location.position
+                }}
+            ).then(function() {
                 res.json(dbProduct);
             });
+        });
     });
 
     // DELETE /api/product/:id  -- Deletes a Product
@@ -57,5 +69,73 @@ module.exports = function(app) {
             res.json(dbProduct);
         });
     });
+
+
+    // GET /api/aisle
+    // returns aisles with available locations
+    app.get("/api/aisle", function(req, res) {
+        let where = { ProductId: null };
+        db.Location.findAll({
+            where     : where,
+            attributes: ['aisle'],
+            group     : ['aisle'],
+            order     : ['aisle']
+        })
+        .then(function(dbLocations) {
+            res.json(dbLocations);
+        });
+    });
+
+    // GET /api/section/:aisle
+    // returns sections with available locations (and given params)
+    app.get("/api/section/:aisle", function(req, res) {
+        let aisle    = req.params.aisle;
+        let where = { ProductId: null, aisle: aisle };
+        db.Location.findAll({
+            where     : where,
+            attributes: ['section'],
+            group     : ['section'],
+            order     : ['section']
+        })
+        .then(function(dbLocations) {
+            res.json(dbLocations);
+        });
+    });
+
+    // GET /api/shelf/:aisle/:section
+    // returns shelfs with available locations (and given params)
+    app.get("/api/shelf/:aisle/:section", function(req, res) {
+        let aisle    = req.params.aisle;
+        let section  = req.params.section;
+        let where = { ProductId: null, aisle: aisle, section: section };
+        db.Location.findAll({
+            where     : where,
+            attributes: ['shelf'],
+            group     : ['shelf'],
+            order     : ['shelf']
+        })
+        .then(function(dbLocations) {
+            res.json(dbLocations);
+        });
+    });
+
+    // GET /api/position/:aisle/:section/:shelf
+    // returns sections with available locations (and given params)
+    app.get("/api/position/:aisle/:section/:shelf", function(req, res) {
+        let aisle    = req.params.aisle;
+        let section  = req.params.section;
+        let shelf    = req.params.shelf;
+        let where = { ProductId: null, aisle: aisle, section: section, shelf: shelf };
+        db.Location.findAll({
+            where     : where,
+            attributes: ['position'],
+            group     : ['position'],
+            order     : ['position']
+        })
+        .then(function(dbLocations) {
+            res.json(dbLocations);
+        });
+    });
+
 
 };
