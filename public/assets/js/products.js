@@ -1,3 +1,74 @@
+// Get all the values from the form
+function getAddProductValues() {
+    let obj = {
+        type  : $("#product-type").val(),
+        model : $("#product-model").val(),
+        size  : $("#product-size").val(),
+        width : $("#product-width").val(),
+        location: { aisle   : $("#location-select-0").val(),
+                    section : $("#location-select-1").val(),
+                    shelf   : $("#location-select-2").val(),
+                    position: $("#location-select-3").val(),
+                    count   : $("#product-count").val()
+        }
+    };
+    return obj;
+}
+
+// Validate the values in the form
+function validateAddProductValues() {
+    let obj = getAddProductValues();
+
+    // Disable this (until we've checked everything)
+    $("#add-product-submit").attr('disabled', true);
+
+    // Check all values:
+    if (!obj.type) return null;
+    if (!obj.model) return null;
+    if (!obj.size) return null;
+    if (!obj.width) return null;
+    if (!obj.location.count) return null;
+    if (!obj.location.aisle) return null;
+    if (!obj.location.section) return null;
+    if (!obj.location.shelf) return null;
+    if (!obj.location.position) return null;
+    if (!obj.location.count) return null;
+
+    // Everything's good
+    $("#add-product-submit").attr('disabled', false);
+    return obj;
+}
+
+// Determine what locations are available for a new product
+// This is done one location param at a time,
+// based on already selected params
+function addLocationSelections() {
+    let props = ['aisle', 'section', 'shelf', 'position'];
+    // Find the rightmost selection that is not disabled
+    // Get the possible values for this selection
+    // based on the values of the selections to the left
+    let params = "";
+    for (let i = 0; i <= 3; i++) {
+        let id = "#location-select-" + i;
+        let nextId = "#location-select-" + (i+1);
+        if ((i === 3) || $(nextId).attr('disabled')) {
+            if ($(id).val() !== "")
+                return;  // Already has a value selected
+
+            $.get("/api/" + props[i] + params, function(results) {
+                for (let j = 0; j < results.length; j++) {
+                    $(id).append($("<option>").text(results[j][props[i]]));
+                }
+                return;
+            });
+            return;
+        } else {
+            params += "/" + $(id).val();
+        }
+    }
+}
+
+// DOCUMENT READY
 $(document).ready(function() {
   console.log("doc ready")
     // productsContainer holds all of our products
@@ -55,4 +126,46 @@ $(document).ready(function() {
 
   }
   getProducts();
+
+  // ====================
+  // Add Product MODAL JS
+  // ====================
+  addLocationSelections();
+
+  // Add Product functions
+  $("#add-product-submit").on("click", function(event) {
+      // event.preventDefault();
+      obj = validateAddProductValues();
+      $.post("/api/product", obj, function(data, status) {
+          console.log("Added product, status = " + status);
+      });
+  });
+
+  $(".location-select").on("change", function() {
+      let thisId = $(this).attr("id");
+      let selIndex = parseInt(thisId.slice(-1));
+
+      // Location params must be selected from left to right
+      // When one is selected, only next to right is then enabled
+      // (And all of them to the right must be unselected.)
+      for (let i = selIndex+1; i <= 3; i++) {
+          let nextId = "#location-select-" + i;
+          $(nextId).val("");  // unselect it
+          $(nextId).attr('disabled', true); // disable it
+          $(nextId).empty();  // empty all options
+          $(nextId).append($("<option>").text(""));
+      }
+      if (selIndex < 3) {
+          // Enable next one to the right
+          let nextId = "#location-select-" + (selIndex + 1);
+          $(nextId).attr('disabled', false);
+      }
+      addLocationSelections();
+      validateAddProductValues();
+  });
+
+  $("#add-product-form").on("keyup", function(event) {
+      validateAddProductValues();
+  });
+
 });

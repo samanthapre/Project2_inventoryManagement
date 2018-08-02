@@ -25,7 +25,8 @@
     <div class="jumbotron">
         <h2>Inventory 
           <br>
-          <a href="#" class="myButton">Add Products</a> </h2>
+          <!-- <a href="#" class="myButton">Add Products</a> </h2> -->
+          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#add-product-modal">Add a Product</button>
         </div>
         <div >
 
@@ -44,8 +45,82 @@
 
             </tbody>
             
-          </table>
-          
+        </table>
+  
+    <!-- ADD PRODUCT MODAL -->
+    <div id="add-product-modal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <form id="add-product-form">
+
+                  <!-- Product Values -->
+                  <div class="input-group">
+                      <div class="input-group-prepend p-2 w-25">
+                          <label for="product-type">Product Type:</label>
+                      </div>
+                      <input type="text" class="form-control" id="product-type" placeholder="Product Type">
+                  </div>
+                  <div class="input-group">
+                      <div class="input-group-prepend p-2 w-25">
+                          <label for="product-model">Model:</label>
+                      </div>
+                      <input type="text" class="form-control" id="product-model" placeholder="Model">
+                  </div>
+                  <div class="input-group">
+                      <div class="input-group-prepend p-2 w-25">
+                          <label for="product-size">Size:</label>
+                      </div>
+                      <input type="text" class="form-control" id="product-size" placeholder="Size">
+                  </div>
+                  <div class="input-group">
+                      <div class="input-group-prepend p-2 w-25">
+                          <label for="product-width">Width:</label>
+                      </div>
+                      <input type="text" class="form-control" id="product-width" placeholder="Width">
+                  </div>
+                  <div class="input-group">
+                      <div class="input-group-prepend p-2 w-25">
+                          <label for="product-count">Count:</label>
+                      </div>
+                      <input type="text" class="form-control" id="product-count" placeholder="#">
+                  </div>
+
+                  <!-- Location -->
+                  <div class="input-group">
+                      <div class="p-2 w-25">
+                          <label for="aisle-sel">Aisle</label>
+                          <select class="form-control location-select" id="location-select-0" name="aisle-sel-list">
+                              <option></option>
+                          </select>
+                      </div>
+                      <div class="p-2 w-25">
+                          <label for="aisle-sel">Section</label>
+                          <select class="form-control location-select" id="location-select-1" name="aisle-sel-list" disabled>
+                              <option></option>
+                          </select>
+                      </div>
+                      <div class="p-2 w-25">
+                          <label for="shelf-sel">Shelf</label>
+                          <select class="form-control location-select" id="location-select-2" name="shelf-sel-list" disabled>
+                              <option></option>
+                          </select>
+                      </div>
+                      <div class="p-2 w-25">
+                          <label for="position-sel">Position</label>
+                          <select class="form-control location-select" id="location-select-3" name="position-sel-list" disabled>
+                              <option></option>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="submit" id="add-product-submit" class="btn btn-primary" disabled>Submit</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+
   </body>
 </html>
 </body>
