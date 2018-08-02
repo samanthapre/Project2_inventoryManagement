@@ -10,6 +10,11 @@ var check = function () {
   }
 }
 
+var storeUser = function() {
+  let sessionUser = sessionStorage.setItem("Name", $(`#usernamelogin`).val());
+  let userAuth = sessionStorage.setItem("auth", "true");
+}
+
 $(document).ready(function () {
 
   // create new user button pressed
@@ -110,21 +115,29 @@ $(document).ready(function () {
 
             // use response to show error/ sucessful login
             if(res == "false"){
-              alert("Username password does not match");
+              // alert("Username password does not match");
+              $(`#loginMessage`).html("Username/Password does not match");
+              $(`#loginMessage`).css("color", "red");
 
             }
             else{
-              alert("You are logged in ;)");
+              // alert("You are logged in ;)");
+              $(`#loginMessage`).html("You are logged in!");
+              $(`#loginMessage`).css("color", "green");
               window.location.replace("/products");
+              storeUser();
             }
-          });
+          }) // end of then
+        }; // end of else
 
-        }
+        
 
-      });
+    })
 
 
   }); // login button pressed
+
+
 
 
 

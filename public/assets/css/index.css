@@ -3,6 +3,11 @@ body {
     width: 100%;
 }
 
+h1 {
+    position: relative;
+    left: 13px;
+}
+
 hr {
     position: relative;
     bottom: 15px;
