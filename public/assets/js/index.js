@@ -10,6 +10,11 @@ var check = function () {
   }
 }
 
+var storeUser = function() {
+  let sessionUser = sessionStorage.setItem("Name", $(`#usernamelogin`).val());
+  let userAuth = sessionStorage.setItem("auth", "true");
+}
+
 $(document).ready(function () {
 
   // create new user button pressed
@@ -120,15 +125,19 @@ $(document).ready(function () {
               $(`#loginMessage`).html("You are logged in!");
               $(`#loginMessage`).css("color", "green");
               window.location.replace("/products");
+              storeUser();
             }
-          });
+          }) // end of then
+        }; // end of else
 
-        }
+        
 
-      });
+    })
 
 
   }); // login button pressed
+
+
 
 
 
