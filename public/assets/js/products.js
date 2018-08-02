@@ -120,18 +120,26 @@ $(document).ready(function() {
 
   // This function constructs a post's HTML
   function createNewRow(products) {
-    
+    var loc = products.Locations[0];
+    var aisle = loc.aisle;
+    var section = loc.section;
+    var shelf = loc.shelf;
+    var postition = loc.position;
     var tr = $("<tr scope='row'>");
     var tdtype = $("<td class='type'>")
     var tdbutton = $("<td>")
-    var button = $("<button class='btn btn-sm myButton delete-button'>")
+    var button = $("<button class='btn btn-sm delete-button'>")
     var tdmodel = $("<td class='model'>")
     var tdsize = $("<td class='size'>")
     var tdwidth = $("<td class='width'>")
+    var tdquantity = $("<td class='count'>")
+    var tdlocation = $("<td class='location'>")
     tdtype.text(products.type);
     tdmodel.text(products.model);
     tdsize.text(products.size);
     tdwidth.text(products.width);
+    tdquantity.text(products.Locations[0].count)
+    tdlocation.text(aisle+"."+section+"."+shelf+"."+position)
     button.text("Delete");
     button.data("id",products.id);
     tdbutton.append(button)
@@ -139,6 +147,7 @@ $(document).ready(function() {
     tr.append(tdmodel);
     tr.append(tdsize);
     tr.append(tdwidth);
+    tr.append(tdquantity);
     tr.append(tdbutton);
     return tr;
 
