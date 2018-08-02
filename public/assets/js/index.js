@@ -72,75 +72,62 @@ $(document).ready(function () {
 
 
         });
-
-
-      // ======OLD BUT SHOULD WORK===========
-      // GET an array of all users
-      //   $.get("/api/users", function (res) {
-      //     console.log(res); // log users
-
-      //     var nameTaken = false; // flag for unique username
-
-      //     // Check if new username/login-name is unique to the database
-      //     for (var i in res) {
-
-      //       // check if username being entered is already in database..
-      //       if (res.login == $(`#usernameSignup`).val()) { 
-      //         nameTaken = true; // .. then the name is taken
-      //         $(`#usernameMessage`).html("Username already taken!");
-      //       }
-
-      //     }
-
-      //     if (!nameTaken) { // if name was not taken, create new user
-      //       //console.log("name not taken")
-
-      //       //  GERNERATE SALT ========================
-      //       function dec2hex(dec) {
-      //         return ('0' + dec.toString(16)).substr(-2)
-      //       }
-
-      //       // generateId :: Integer -> String
-      //       function generateId(len) {
-      //         var arr = new Uint8Array((len || 40) / 2)
-      //         window.crypto.getRandomValues(arr)
-      //         return Array.from(arr, dec2hex).join('')
-      //       }
-
-      //       // create a new random 10 digit salt for the new user
-      //       var curSalt = generateId(10);
-      //       // ===========================================
-
-      //       var curPass = $(`#userPassSignup`).val() /// get the user password
-      //       var curHash = sha256(curPass + curSalt); // encrypt the password and salt
-
-      //       //console.log(curHash);
-      //       //console.log(curSalt);
-      //       //console.log($(`#usernameSignup`).val());
-
-      //       // create new object for the new user
-      //       var newUser = {
-      //         name: $(`#nameSignup`).val(),
-      //         login: $(`#usernameSignup`).val(),
-      //         hash: curHash,
-      //         salt: curSalt
-      //       }
-
-      //       // add new user to the database 
-      //       $.post("/api/user", newUser)
-      //         .then(function (res) {
-      //           console.log(res);
-      //         });
-
-      //     } // end if
-      //   }); // get request
-      //   // after creating new user, 
-      //   // redirect to products page
-      //   //window.location.replace("/products");
-      //   alert("User Created");
-
-
     }
   }); // signupButton pressed
+
+  $(`#loginSubmit`).on("click", function (event) {
+    event.preventDefault();
+
+    console.log("Log in Button Pressed");
+
+    var userLogin = {
+      login: $(`#usernamelogin`).val()
+    }
+
+    console.log(userLogin);
+
+    // get salt for username attempt
+    $.post("/api/salt", userLogin)
+      .then(function (res) {
+        if (res == "false") {
+          alert("User not in database");
+        }
+        else {
+          console.log("Salt: ",res);
+
+           // hash password attempt with salt
+          var curPass = $(`#userpasslogin`).val() /// get the user password
+          var curHash = sha256(curPass + res); // encrypt the password and salt
+    
+          var saltyLogin = {
+            login: $(`#usernamelogin`).val(),
+            hash: curHash
+          }
+
+          // send salty-hash & username to server
+          $.post("/api/login", saltyLogin)
+          .then(function (res) {
+
+            // use response to show error/ sucessful login
+            if(res == "false"){
+              alert("Username password does not match");
+
+            }
+            else{
+              alert("You are logged in ;)");
+              window.location.replace("/products");
+            }
+          });
+
+        }
+
+      });
+
+
+  }); // login button pressed
+
+
+
+
 }); // on page load
 
