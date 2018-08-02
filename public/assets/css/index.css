@@ -54,7 +54,9 @@ a:hover {
     border-style: solid;
     border-width: 1px;
 }
-
+.delete-button {
+    position: static
+}
 .userButtons button:hover {
     background: #B07BAC;
 }
