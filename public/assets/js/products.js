@@ -125,7 +125,7 @@ $(document).ready(function() {
 
   // This function constructs a post's HTML
   function createNewRow(products) {
-    console.log(products)
+    
     var loc = products.Locations[0];
     var aisle = loc.aisle;
     var section = loc.section;
@@ -155,6 +155,7 @@ $(document).ready(function() {
     tr.append(tdsize);
     tr.append(tdwidth);
     tr.append(tdquantity);
+    tr.append(tdlocation);
     tr.append(tdbutton);
     return tr;
 
