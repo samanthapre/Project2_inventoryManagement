@@ -75,7 +75,7 @@ if (sessionStorage.getItem("Name") === null) {
 $(document).ready(function() {
   console.log("doc ready")
     console.log("checked")
-    }
+    
     // productsContainer holds all of our products
     var productsTable = $("#productTable");
     
