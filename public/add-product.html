@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Add Product</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/index.css" />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <!-- AJAX JS (required for AJAX, also supports JQuery) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="./assets/js/index.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <i id="logoNav" class="fas fa-parachute-box"></i> Manager
+        </a>
+
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">HOME</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">ABOUT</a>
+            </li>
+        </ul>
+    </nav>
+    <hr>
+
+    <div class="appIcon">
+        <h1>MANAGER</h1>
+        <i id="logo" class="fas fa-parachute-box"></i>
+        <div class="userButtons">
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#add-product-modal">Add a Product</button>
+        </div>
+    </div>
+
+    <!-- ADD PRODUCT MODAL -->
+    <div id="add-product-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="add-product-form">
+
+                    <!-- Product Values -->
+                    <div class="input-group">
+                        <div class="input-group-prepend p-2 w-25">
+                            <label for="product-type">Product Type:</label>
+                        </div>
+                        <input type="text" class="form-control" id="product-type" placeholder="Product Type">
+                    </div>
+                    <div class="input-group">
+                        <div class="input-group-prepend p-2 w-25">
+                            <label for="product-model">Model:</label>
+                        </div>
+                        <input type="text" class="form-control" id="product-model" placeholder="Model">
+                    </div>
+                    <div class="input-group">
+                        <div class="input-group-prepend p-2 w-25">
+                            <label for="product-size">Size:</label>
+                        </div>
+                        <input type="text" class="form-control" id="product-size" placeholder="Size">
+                    </div>
+                    <div class="input-group">
+                        <div class="input-group-prepend p-2 w-25">
+                            <label for="product-width">Width:</label>
+                        </div>
+                        <input type="text" class="form-control" id="product-width" placeholder="Width">
+                    </div>
+                    <div class="input-group">
+                        <div class="input-group-prepend p-2 w-25">
+                            <label for="product-count">Count:</label>
+                        </div>
+                        <input type="text" class="form-control" id="product-count" placeholder="#">
+                    </div>
+
+                    <!-- Location -->
+                    <div class="input-group">
+                        <div class="p-2 w-25">
+                            <label for="aisle-sel">Aisle</label>
+                            <select class="form-control location-select" id="location-select-0" name="aisle-sel-list">
+                                <option></option>
+                            </select>
+                        </div>
+                        <div class="p-2 w-25">
+                            <label for="aisle-sel">Section</label>
+                            <select class="form-control location-select" id="location-select-1" name="aisle-sel-list" disabled>
+                                <option></option>
+                            </select>
+                        </div>
+                        <div class="p-2 w-25">
+                            <label for="shelf-sel">Shelf</label>
+                            <select class="form-control location-select" id="location-select-2" name="shelf-sel-list" disabled>
+                                <option></option>
+                            </select>
+                        </div>
+                        <div class="p-2 w-25">
+                            <label for="position-sel">Position</label>
+                            <select class="form-control location-select" id="location-select-3" name="position-sel-list" disabled>
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="add-product-submit" class="btn btn-primary" disabled>Submit</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get all the values from the form
+        function getAddProductValues() {
+            let obj = {
+                type  : $("#product-type").val(),
+                model : $("#product-model").val(),
+                size  : $("#product-size").val(),
+                width : $("#product-width").val(),
+                location: { aisle   : $("#location-select-0").val(),
+                            section : $("#location-select-1").val(),
+                            shelf   : $("#location-select-2").val(),
+                            position: $("#location-select-3").val(),
+                            count   : $("#product-count").val()
+                }
+            };
+            return obj;
+        }
+
+        // Validate the values in the form
+        function validateAddProductValues() {
+            let obj = getAddProductValues();
+
+            // Disable this (until we've checked everything)
+            $("#add-product-submit").attr('disabled', true);
+
+            // Check all values:
+            if (!obj.type) return null;
+            if (!obj.model) return null;
+            if (!obj.size) return null;
+            if (!obj.width) return null;
+            if (!obj.location.count) return null;
+            if (!obj.location.aisle) return null;
+            if (!obj.location.section) return null;
+            if (!obj.location.shelf) return null;
+            if (!obj.location.position) return null;
+            if (!obj.location.count) return null;
+
+            // Everything's good
+            $("#add-product-submit").attr('disabled', false);
+            return obj;
+        }
+
+        // Determine what locations are available for a new product
+        // This is done one location param at a time,
+        // based on already selected params
+        function addLocationSelections() {
+            let props = ['aisle', 'section', 'shelf', 'position'];
+            // Find the rightmost selection that is not disabled
+            // Get the possible values for this selection
+            // based on the values of the selections to the left
+            let params = "";
+            for (let i = 0; i <= 3; i++) {
+                let id = "#location-select-" + i;
+                let nextId = "#location-select-" + (i+1);
+                if ((i === 3) || $(nextId).attr('disabled')) {
+                    if ($(id).val() !== "")
+                        return;  // Already has a value selected
+
+                    $.get("/api/" + props[i] + params, function(results) {
+                        for (let j = 0; j < results.length; j++) {
+                            $(id).append($("<option>").text(results[j][props[i]]));
+                        }
+                        return;
+                    });
+                    return;
+                } else {
+                    params += "/" + $(id).val();
+                }
+            }
+        }
+
+        $(document).ready(function() {
+
+            addLocationSelections();
+
+            // Add Product functions
+            $("#add-product-submit").on("click", function(event) {
+                // event.preventDefault();
+                obj = validateAddProductValues();
+                $.post("/api/product", obj, function(data, status) {
+                    console.log("Added product, status = " + status);
+                });
+            });
+
+            $(".location-select").on("change", function() {
+                let thisId = $(this).attr("id");
+                let selIndex = parseInt(thisId.slice(-1));
+
+                // Location params must be selected from left to right
+                // When one is selected, only next to right is then enabled
+                // (And all of them to the right must be unselected.)
+                for (let i = selIndex+1; i <= 3; i++) {
+                    let nextId = "#location-select-" + i;
+                    $(nextId).val("");  // unselect it
+                    $(nextId).attr('disabled', true); // disable it
+                    $(nextId).empty();  // empty all options
+                    $(nextId).append($("<option>").text(""));
+                }
+                if (selIndex < 3) {
+                    // Enable next one to the right
+                    let nextId = "#location-select-" + (selIndex + 1);
+                    $(nextId).attr('disabled', false);
+                }
+                addLocationSelections();
+                validateAddProductValues();
+            });
+
+            $("#add-product-form").on("keyup", function(event) {
+                validateAddProductValues();
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>
