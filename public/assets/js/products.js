@@ -68,11 +68,12 @@ function addLocationSelections() {
     }
 }
 
+if (sessionStorage.getItem("Name") === null) {
+    window.location.replace("/");
+    }
 // DOCUMENT READY
 $(document).ready(function() {
   console.log("doc ready")
-  if (sessionStorage.getItem("Name") === null) {
-    window.location.replace("/");
     console.log("checked")
     }
     // productsContainer holds all of our products
