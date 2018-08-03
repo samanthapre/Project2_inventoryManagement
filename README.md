@@ -1,4 +1,17 @@
 # Project2_inventoryManagement-
 
 
-Edit by Nic
+Our Technology Stack
+
+HTML/CSS/JavaScript
+Bootstrap
+Node
+Express
+Sequelize 
+MySQL
+bcrypt.js
+
+GitHub repo for source control/team development
+Deployed to Heroku
+
+
