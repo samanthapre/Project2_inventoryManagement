@@ -203,4 +203,8 @@ $(document).ready(function() {
       validateAddProductValues();
   });
 
+  $(`#logoutButton`).on("click", function(event) {
+      sessionStorage.clear();
+  })
+
 });
